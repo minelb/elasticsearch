@@ -48,6 +48,7 @@ public abstract class SymbolicLinkPreservingUntarTransform implements UnpackTran
             if (entry.isDirectory()) {
                 Files.createDirectory(destination);
             } else if (entry.isSymbolicLink()) {
+                //TODO - lb 解压缩jdk报错：linux-17.0.2-x64.tar.gz\legal\jdk.crypto.ec\LICENSE: 客户端没有所需的特权。
                 Files.createSymbolicLink(destination, Paths.get(entry.getLinkName()));
             } else {
                 // copy the file from the archive using a small buffer to avoid heaping

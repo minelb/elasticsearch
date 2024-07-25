@@ -31,7 +31,9 @@ CopySpec archiveFiles(CopySpec modulesFiles, String distributionType, String pla
       }
       into("darwin".equals(platform) ? 'jdk.app' : 'jdk') {
         if (isTestDistro == false) {
-          with jdkFiles(project, platform, architecture)
+          //TODO - lb 03a：复制自带jdk
+          //isTestDistro = false
+          //with jdkFiles(project, platform, architecture)
         }
       }
       into('') {
@@ -97,6 +99,7 @@ distribution_archives {
     }
   }
 
+  //TODO - lb 01：gradle构建编译打包入口【linux】
   linuxTar {
     archiveClassifier = 'linux-x86_64'
     content {

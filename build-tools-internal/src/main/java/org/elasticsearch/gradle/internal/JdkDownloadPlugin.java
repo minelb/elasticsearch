@@ -47,6 +47,7 @@ public class JdkDownloadPlugin implements Plugin<Project> {
             transformSpec.parameters(parameters -> parameters.setTrimmedPrefixPattern(JDK_TRIMMED_PREFIX));
         });
 
+        //TODO - lb 04: jdk download02
         ArtifactTypeDefinition tarArtifactTypeDefinition = project.getDependencies().getArtifactTypes().maybeCreate("tar.gz");
         project.getDependencies().registerTransform(SymbolicLinkPreservingUntarTransform.class, transformSpec -> {
             transformSpec.getFrom()

@@ -35,6 +35,7 @@ ES_HOME=`dirname "$ES_HOME"`
 # now set the classpath
 ES_CLASSPATH="$ES_HOME/lib/*"
 
+# TODO lb start - jdk01
 # now set the path to java
 if [ ! -z "$ES_JAVA_HOME" ]; then
   JAVA="$ES_JAVA_HOME/bin/java"

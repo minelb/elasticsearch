@@ -28,10 +28,15 @@ public class InternalTestClustersPlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
+        //TODO lb run 03a： jdk下载
         project.getPlugins().apply(InternalDistributionDownloadPlugin.class);
+        //TODO lb run 03b： 分片服务
         project.getRootProject().getPluginManager().apply(InternalReaperPlugin.class);
+        //TODO lb run 03c： 测试集群
         TestClustersPlugin testClustersPlugin = project.getPlugins().apply(TestClustersPlugin.class);
+        //TODO lb run 03d： java运行环境
         testClustersPlugin.setRuntimeJava(providerFactory.provider(() -> BuildParams.getRuntimeJavaHome()));
+        //TODO lb run 03e： 是否是发布版本
         testClustersPlugin.setIsReleasedVersion(
             version -> (version.equals(VersionProperties.getElasticsearchVersion()) && BuildParams.isSnapshotBuild() == false)
                 || BuildParams.getBwcVersions().unreleasedInfo(version) == null

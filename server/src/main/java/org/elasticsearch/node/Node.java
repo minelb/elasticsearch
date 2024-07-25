@@ -325,6 +325,7 @@ public class Node implements Closeable {
                 Constants.JVM_VERSION
             );
             if (jvmInfo.getBundledJdk()) {
+                //TODO lb start
                 logger.info("JVM home [{}], using bundled JDK [{}]", System.getProperty("java.home"), jvmInfo.getUsingBundledJdk());
             } else {
                 logger.info("JVM home [{}]", System.getProperty("java.home"));

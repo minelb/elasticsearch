@@ -96,6 +96,7 @@ gradlePlugin {
       implementationClass = 'org.elasticsearch.gradle.internal.InternalTestArtifactBasePlugin'
     }
     internalTestClusters {
+      //TODO lb run 02： 集群插件
       id = 'elasticsearch.internal-testclusters'
       implementationClass = 'org.elasticsearch.gradle.internal.InternalTestClustersPlugin'
     }
@@ -312,4 +313,9 @@ abstract class JacksonAlignmentRule implements ComponentMetadataRule {
       }
     }
   }
+}
+
+tasks.named("jar") {
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+  exclude("classpath.index")
 }

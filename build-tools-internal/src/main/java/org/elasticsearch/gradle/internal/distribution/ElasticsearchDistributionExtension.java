@@ -47,6 +47,17 @@ public class ElasticsearchDistributionExtension {
                 spec.exclude("*/config/log4j2.properties");
                 spec.exclude("config/log4j2.properties");
 
+                if("ml".equalsIgnoreCase(module.getName())) {
+                    spec.exclude("*/platform/linux-aarch64/lib/libtorch_cpu.so");
+                    spec.exclude("*/platform/linux-aarch64/lib/libmkl_*.so");
+                    spec.exclude("*/platform/linux-aarch64/lib/libMlMathsCommon.so");
+                    spec.exclude("*/platform/linux-aarch64/lib/libMlModel.so");
+                    spec.exclude("platform/linux-aarch64/lib/libtorch_cpu.so");
+                    spec.exclude("platform/linux-aarch64/lib/libmkl_*.so");
+                    spec.exclude("platform/linux-aarch64/lib/libMlMathsCommon.so");
+                    spec.exclude("platform/linux-aarch64/lib/libMlModel.so");
+                }
+
                 // This adds a implicit dependency for 'module' to PluginBuildPlugin which is fine as we just fail
                 // in case an invalid 'module' not applying this plugin is passed here
                 var moduleName = module.getExtensions().getByType(PluginPropertiesExtension.class).getName();

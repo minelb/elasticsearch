@@ -13,6 +13,7 @@ import org.elasticsearch.gradle.testclusters.RunTask
 // precompiled script plugins (see https://github.com/gradle/gradle/issues/17004)
 // apply plugin: 'elasticsearch.internal-testclusters'
 
+//TODO lb run 01： 服务启动
 testClusters.register("runTask") {
     testDistribution = providers.systemProperty('run.distribution').orElse('default').get()
     if (providers.systemProperty('run.distribution').getOrElse('default') == 'default') {
@@ -27,12 +28,13 @@ testClusters.register("runTask") {
       }
       // Not enabled by default in the build, otherwise all integration tests will download the databases from our geoip download service:
       systemProperty 'ingest.geoip.downloader.enabled.default', 'true'
-      setting 'xpack.security.enabled', 'true'
+      setting 'xpack.security.enabled', 'false'
       keystore 'bootstrap.password', 'password'
       user username: 'elastic-admin', password: 'elastic-password', role: '_es_test_root'
     }
 }
 
+//TODO lb run 00： 服务启动
 tasks.register("run", RunTask) {
   useCluster testClusters.named("runTask")
   description = 'Runs elasticsearch in the foreground'
